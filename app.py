@@ -12,8 +12,14 @@ ENDPOINT_URL = 'https://vision.googleapis.com/v1/images:annotate'
 LANGUAGE = os.environ.get('LANGUAGE', 'ja')
 MAX_RESULTS = os.environ.get('MAX_RESULTS', 2048)
 API_KEY = os.environ.get('API_KEY')
+PDF_OUTPUT_NAME = os.environ.get('PDF_OUTPUT_NAME')
 
 FILE_DIR = './files'
+PDF_DIR = './pdf'
+
+if API_KEY is None:
+    print('API key has not been set')
+    sys.exit(1)
 
 file_paths = glob.glob(os.path.join(FILE_DIR, '*'))
 for file_path in file_paths:
@@ -30,4 +36,5 @@ for file_path in file_paths:
         with open(hocr, "wb") as f:
             f.write(page.render().encode('utf-8'))
 
-hocr_pdf.export_pdf(FILE_DIR, 300, 'out.pdf')
+pdf_name = PDF_OUTPUT_NAME or 'out.pdf'
+hocr_pdf.export_pdf(FILE_DIR, 300, pdf_name)
