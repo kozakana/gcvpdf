@@ -13,4 +13,4 @@ RUN git clone --depth 1 https://github.com/dinosauria123/gcv2hocr.git &&\
 
 WORKDIR /usr/src/gcvpdf
 
-#ENTRYPOINT python app.py
+ENTRYPOINT python app.py
