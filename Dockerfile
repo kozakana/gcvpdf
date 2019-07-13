@@ -1,8 +1,8 @@
 FROM python:3.7-slim-stretch
 
 RUN apt-get update &&\
-    apt-get install -y git gcc &&\
-    pip install requests reportlab lxml
+    apt-get install -y git gcc poppler &&\
+    pip install requests reportlab lxml pdf2image
 
 WORKDIR /usr/src
 RUN git clone --depth 1 https://github.com/dinosauria123/gcv2hocr.git &&\
